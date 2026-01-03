@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-arcade-dark: #0f0c29;
+  --color-arcade-purple: #302b63;
+  --color-arcade-black: #24243e;
+  --color-arcade-neon-pink: #ff00ff;
+  --color-arcade-neon-blue: #00ffff;
+  --color-arcade-neon-green: #0aff00;
+  --color-arcade-gold: #ffd700;
+
+  --font-arcade: "Press Start 2P", cursive;
+  --font-sans: "Inter", sans-serif;
+
+  --animate-spin-slow: spin 3s linear infinite;
+  --animate-pulse-fast: pulse 0.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-bounce-slow: bounce 2s infinite;
+
+  --shadow-neon-pink: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+  --shadow-neon-blue: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
+}
+
+
+
+@layer base {
+  body {
+    @apply bg-arcade-dark text-white font-sans overflow-hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-arcade;
+  }
+}
+
+@layer utilities {
+  .text-glow-pink {
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+  }
+
+  .text-glow-blue {
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
+}
