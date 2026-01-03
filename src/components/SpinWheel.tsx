@@ -45,9 +45,8 @@ export const SpinWheel = ({ onEnd, onExit }: GameProps) => {
         const segmentAngle = 360 / PRIZES.length;
         const prizeCenterAngle = (winningIndex * segmentAngle) + (segmentAngle / 2);
 
-        // Base target relative to 0
-        // e.g. Prize at 30deg -> We need to rotate 330deg to get it to 0 (360) 
-        let targetRotation = 360 - prizeCenterAngle;
+        // Target 270 degrees (12 o'clock / Top) to match the physical pointer
+        let targetRotation = 270 - prizeCenterAngle;
 
         // Add random jitter WITHIN the segment (keep it safe, +/- 40% of width)
         const jitter = (Math.random() - 0.5) * (segmentAngle * 0.8);
@@ -107,13 +106,16 @@ export const SpinWheel = ({ onEnd, onExit }: GameProps) => {
         }
 
         setTimeout(() => {
-            onEnd({
-                success: prize.label !== 'TRY AGAIN',
-                score: 100,
-                prize: prize.label
-            });
-            setIsSpinning(false);
-            // Reset rotation (optional, but clean) - actually don't, keeps it realistic
+            if (prize.label === 'TRY AGAIN') {
+                setIsSpinning(false);
+            } else {
+                onEnd({
+                    success: true,
+                    score: 100,
+                    prize: prize.label
+                });
+                setIsSpinning(false);
+            }
         }, 1000);
     };
 
@@ -132,24 +134,36 @@ export const SpinWheel = ({ onEnd, onExit }: GameProps) => {
                 >
                     <svg viewBox="0 0 100 100" className="w-full h-full">
                         {PRIZES.map((prize, i) => {
-                            const angle = 360 / PRIZES.length;
-                            // Calculate path for wedge
-                            const startAngle = i * angle;
+                            const segmentAngle = 360 / PRIZES.length;
+                            const startAngle = i * segmentAngle;
+                            const midAngle = startAngle + segmentAngle / 2;
 
+                            // Calculate text position (polar to cartesian)
+                            // Mid angle in radians
+                            const rad = (deg: number) => (deg * Math.PI) / 180;
+                            // Radius 35 (0-50 scale, so 70% out)
+                            const textX = 50 + 35 * Math.cos(rad(midAngle));
+                            const textY = 50 + 35 * Math.sin(rad(midAngle));
 
-                            // SVG arc path commands... simplified for circle segments
-                            // Using a simpler approach: rotate the whole segment group
                             return (
-                                <g key={i} transform={`rotate(${startAngle}, 50, 50)`}>
-                                    <path d="M50 50 L50 0 A50 50 0 0 1 93.3 25 L50 50" fill={prize.color} stroke="#1a1a1a" strokeWidth="0.5" />
+                                <g key={i}>
+                                    {/* Wedge */}
+                                    <path
+                                        d={`M50 50 L${50 + 50 * Math.cos(rad(startAngle))} ${50 + 50 * Math.sin(rad(startAngle))} A50 50 0 0 1 ${50 + 50 * Math.cos(rad(startAngle + segmentAngle))} ${50 + 50 * Math.sin(rad(startAngle + segmentAngle))} Z`}
+                                        fill={prize.color}
+                                        stroke="#1a1a1a"
+                                        strokeWidth="0.5"
+                                    />
+                                    {/* Text */}
                                     <text
-                                        x="70"
-                                        y="30"
+                                        x={textX}
+                                        y={textY}
                                         fill="white"
                                         fontSize="4"
                                         fontWeight="bold"
                                         textAnchor="middle"
-                                        transform="rotate(60, 70, 30)"
+                                        dominantBaseline="middle"
+                                        transform={`rotate(${midAngle + 90}, ${textX}, ${textY})`}
                                         style={{ fontFamily: '"Press Start 2P"', textShadow: '1px 1px 0px black' }}
                                     >
                                         {prize.label}
