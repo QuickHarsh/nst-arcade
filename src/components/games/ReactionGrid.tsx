@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import type { GameProps } from '../../types';
 import { useArcadeSound } from '../../hooks/useArcadeSound';
 
+import { triggerConfetti, triggerSchoolPride } from '../../utils/confetti';
+
 export const ReactionGrid = ({ onEnd, onExit }: GameProps) => {
     const [gameState, setGameState] = useState<'waiting' | 'ready' | 'clicked' | 'finished'>('waiting');
     const [activeCell, setActiveCell] = useState<number | null>(null);
@@ -30,6 +32,27 @@ export const ReactionGrid = ({ onEnd, onExit }: GameProps) => {
     const handleClick = (index: number) => {
         if (gameState === 'ready' && index === activeCell) {
             const time = Date.now() - startTimeRef.current;
+
+            // 100ms Instant Win Challenge
+            if (time <= 100) {
+                setGameState('finished');
+                playSound('win');
+                triggerSchoolPride();
+
+                // Pick random reward
+                const rewards = ['JACKPOT', 'FREE DRINK', '50% OFF', 'MYSTERY BOX'];
+                const reward = rewards[Math.floor(Math.random() * rewards.length)];
+
+                setMessage(`GODLIKE! ${time}ms`);
+
+                setTimeout(() => onEnd({
+                    success: true,
+                    score: 1000,
+                    prize: reward
+                }), 2000); // Celebration delay
+                return;
+            }
+
             playSound('click');
             const newTimes = [...reactionTimes, time];
             setReactionTimes(newTimes);
@@ -39,6 +62,12 @@ export const ReactionGrid = ({ onEnd, onExit }: GameProps) => {
                 const avg = newTimes.reduce((a, b) => a + b, 0) / ATTEMPTS;
                 const win = avg < 350; // 350ms threshold
                 setMessage(`AVG: ${Math.round(avg)}ms`);
+
+                if (win) {
+                    playSound('coin');
+                    triggerConfetti();
+                }
+
                 setTimeout(() => onEnd({
                     success: win,
                     score: Math.round(avg),
