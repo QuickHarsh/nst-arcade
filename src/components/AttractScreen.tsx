@@ -27,17 +27,17 @@ export const AttractScreen = ({ onStart }: AttractScreenProps) => {
             <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-blue rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-pulse delay-1000" />
 
             {/* Main Content */}
-            <div className="relative z-10 flex flex-col items-center space-y-12">
+            <div className="relative z-10 flex flex-col items-center space-y-8 md:space-y-12">
                 <motion.div
                     initial={{ y: -50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="text-center"
                 >
-                    <h1 className="text-6xl md:text-8xl font-arcade text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 drop-shadow-[0_5px_5px_rgba(0,255,255,0.5)]">
+                    <h1 className="text-5xl md:text-8xl font-arcade text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 drop-shadow-[0_5px_5px_rgba(0,255,255,0.5)]">
                         TEKRON
                     </h1>
-                    <h2 className="text-4xl md:text-6xl font-arcade text-neon-pink mt-4 drop-shadow-[0_0_10px_rgba(255,0,255,0.8)]">
+                    <h2 className="text-3xl md:text-6xl font-arcade text-neon-pink mt-2 md:mt-4 drop-shadow-[0_0_10px_rgba(255,0,255,0.8)]">
                         ARCADE
                     </h2>
                 </motion.div>
@@ -45,20 +45,20 @@ export const AttractScreen = ({ onStart }: AttractScreenProps) => {
                 <motion.div
                     animate={{ scale: [1, 1.1, 1] }}
                     transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-                    className="bg-black/40 backdrop-blur-sm px-8 py-4 rounded-full border-2 border-neon-blue shadow-[0_0_20px_rgba(0,255,255,0.3)]"
+                    className="bg-black/40 backdrop-blur-sm px-6 py-3 md:px-8 md:py-4 rounded-full border-2 border-neon-blue shadow-[0_0_20px_rgba(0,255,255,0.3)]"
                 >
-                    <div className="flex items-center space-x-4">
-                        <Gamepad2 className="w-8 h-8 text-neon-blue" />
-                        <span className="font-arcade text-xl md:text-2xl text-white tracking-widest animate-pulse">
+                    <div className="flex items-center space-x-2 md:space-x-4">
+                        <Gamepad2 className="w-6 h-6 md:w-8 md:h-8 text-neon-blue" />
+                        <span className="font-arcade text-lg md:text-2xl text-white tracking-widest animate-pulse">
                             TAP TO START
                         </span>
-                        <Gamepad2 className="w-8 h-8 text-neon-blue" />
+                        <Gamepad2 className="w-6 h-6 md:w-8 md:h-8 text-neon-blue" />
                     </div>
                 </motion.div>
 
-                <p className="text-gray-400 font-sans text-sm tracking-widest uppercase opacity-60">
+                {/* <p className="text-gray-400 font-sans text-xs md:text-sm tracking-widest uppercase opacity-60">
                     Coin inserted: 0/1
-                </p>
+                </p> */}
             </div>
         </div>
     );

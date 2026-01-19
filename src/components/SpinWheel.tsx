@@ -192,7 +192,7 @@ export const SpinWheel = ({ onEnd, onExit }: GameProps) => {
             <button
                 onClick={handleSpin}
                 disabled={isSpinning}
-                className="mt-12 px-12 py-6 bg-gradient-to-r from-arcade-purple to-neon-pink text-white font-arcade text-2xl rounded-lg border-b-8 border-b-[rgba(0,0,0,0.5)] active:border-b-0 active:translate-y-2 transition-all shadow-lg hover:shadow-neon-pink disabled:opacity-50 disabled:cursor-not-allowed"
+                className="mt-8 md:mt-12 px-8 py-4 md:px-12 md:py-6 bg-gradient-to-r from-arcade-purple to-neon-pink text-white font-arcade text-xl md:text-2xl rounded-lg border-b-8 border-b-[rgba(0,0,0,0.5)] active:border-b-0 active:translate-y-2 transition-all shadow-lg hover:shadow-neon-pink disabled:opacity-50 disabled:cursor-not-allowed"
             >
                 {isSpinning ? '...' : 'SPIN!'}
             </button>

@@ -8,12 +8,10 @@ import { RedeemScreen } from './components/RedeemScreen';
 import { SpinWheel } from './components/SpinWheel';
 import { NeonMemory } from './components/games/NeonMemory';
 import { CyberWhack } from './components/games/CyberWhack';
-import { TurboTapper } from './components/games/TurboTapper';
 import { PatternMaster } from './components/games/PatternMaster';
 import { LuckySlots } from './components/games/LuckySlots';
 import { ReactionGrid } from './components/games/ReactionGrid';
 import { SpaceDodge } from './components/games/SpaceDodge';
-import { MathDash } from './components/games/MathDash';
 import { EmojiRain } from './components/games/EmojiRain';
 import type { IGame, GameResult } from './types';
 
@@ -47,14 +45,6 @@ const GAMES: IGame[] = [
     component: CyberWhack,
   },
   {
-    id: 'turbo-tapper',
-    title: 'Turbo Tapper',
-    description: 'Mash the button. Do not stop.',
-    goal: '50 taps in 10s',
-    thumbnailColor: '#ff0000',
-    component: TurboTapper,
-  },
-  {
     id: 'pattern-master',
     title: 'Pattern Master',
     description: 'Memorize the sequence. Repeat the pattern.',
@@ -85,14 +75,6 @@ const GAMES: IGame[] = [
     goal: 'Survive 15s',
     thumbnailColor: '#00ffff',
     component: SpaceDodge,
-  },
-  {
-    id: 'math-dash',
-    title: 'Math Dash',
-    description: 'Solve equations under pressure.',
-    goal: '5 Correct Answers',
-    thumbnailColor: '#0aff00',
-    component: MathDash,
   },
   {
     id: 'emoji-rain',

@@ -53,7 +53,7 @@ export const ResultScreen = ({ prize, onRedeem }: ResultScreenProps) => {
                     WINNER!
                 </h1>
 
-                <div className="bg-gradient-to-br from-gray-900 to-black p-10 rounded-2xl border-4 border-neon-pink shadow-[0_0_50px_#ff00ff] w-full text-center mb-10 transform -rotate-2 hover:rotate-0 transition-transform">
+                <div className="bg-gradient-to-br from-gray-900 to-black p-6 md:p-10 rounded-2xl border-4 border-neon-pink shadow-[0_0_50px_#ff00ff] w-full text-center mb-8 md:mb-10 transform -rotate-2 hover:rotate-0 transition-transform">
                     <p className="text-gray-400 font-sans text-sm tracking-widest uppercase mb-2">You Won</p>
                     <h2 className="text-3xl md:text-4xl font-arcade text-white shadow-black drop-shadow-lg leading-tight">
                         {prize}
@@ -62,7 +62,7 @@ export const ResultScreen = ({ prize, onRedeem }: ResultScreenProps) => {
 
                 <button
                     onClick={onRedeem}
-                    className="group relative px-8 py-5 bg-transparent overflow-hidden rounded-lg"
+                    className="group relative px-6 py-4 md:px-8 md:py-5 bg-transparent overflow-hidden rounded-lg"
                 >
                     <div className="absolute inset-0 w-full h-full bg-neon-blue opacity-20 group-hover:opacity-40 transition-opacity" />
                     <div className="absolute inset-0 border-2 border-neon-blue rounded-lg blur-[2px]" />
