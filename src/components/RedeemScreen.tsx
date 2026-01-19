@@ -17,7 +17,7 @@ export const RedeemScreen = ({ prize, onReset }: RedeemScreenProps) => {
     };
 
     const handleUnstop = () => {
-        window.open('https://unstop.com/college-fests/tekron-20-newton-school-of-technology-314358', '_blank');
+        window.open('https://unstop.com/college-fests/tekron-20-newton-school-of-technology-427458?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnai6TWCdfvLPo7ugYzR33Cp85EcXCQJv7F6gW872Ye8VHcBaIzYyn4eLRaHE_aem_7G_4UcByzps6rlOswz6sRQ', '_blank');
     };
 
     return (
