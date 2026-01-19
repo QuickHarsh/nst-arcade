@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import type { GameProps } from '../../types';
 import { useArcadeSound } from '../../hooks/useArcadeSound';
 
+import { getRandomPrize } from '../../utils/prizes';
+
 const COLORS = ['#ff00ff', '#00ffff', '#0aff00', '#ffd700'];
 
 export const PatternMaster = ({ onEnd, onExit }: GameProps) => {
@@ -68,7 +70,7 @@ export const PatternMaster = ({ onEnd, onExit }: GameProps) => {
         if (newInput.length === sequence.length) {
             if (sequence.length >= 8) {
                 // Win condition
-                onEnd({ success: true, score: 8, prize: 'MEMORY MASTER' });
+                onEnd({ success: true, score: 8, prize: getRandomPrize() });
             } else {
                 // Next round
                 setMessage('GOOD!');

@@ -4,6 +4,8 @@ import type { GameProps } from '../../types';
 import { useArcadeSound } from '../../hooks/useArcadeSound';
 import { useJuice } from '../../hooks/useJuice';
 
+import { getRandomPrize } from '../../utils/prizes';
+
 export const CyberWhack = ({ onEnd, onExit }: GameProps) => {
     const [score, setScore] = useState(0);
     const [moles, setMoles] = useState<boolean[]>(Array(9).fill(false));
@@ -21,10 +23,11 @@ export const CyberWhack = ({ onEnd, onExit }: GameProps) => {
             setTimeLeft((t) => {
                 if (t <= 1) {
                     clearInterval(timer);
+                    const isWin = scoreRef.current >= 1000;
                     onEnd({
-                        success: scoreRef.current >= 1000,
+                        success: isWin,
                         score: scoreRef.current,
-                        prize: scoreRef.current >= 1000 ? 'REFLEX KING' : undefined
+                        prize: isWin ? getRandomPrize() : undefined
                     });
                     return 0;
                 }

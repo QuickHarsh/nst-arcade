@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import type { GameProps } from '../../types';
 import { useArcadeSound } from '../../hooks/useArcadeSound';
+import { getRandomPrize } from '../../utils/prizes';
 
 import { triggerConfetti, triggerSchoolPride } from '../../utils/confetti';
 
@@ -40,8 +41,7 @@ export const ReactionGrid = ({ onEnd, onExit }: GameProps) => {
                 triggerSchoolPride();
 
                 // Pick random reward
-                const rewards = ['JACKPOT', 'FREE DRINK', '50% OFF', 'MYSTERY BOX'];
-                const reward = rewards[Math.floor(Math.random() * rewards.length)];
+                const reward = getRandomPrize();
 
                 setMessage(`GODLIKE! ${time}ms`);
 
@@ -71,7 +71,7 @@ export const ReactionGrid = ({ onEnd, onExit }: GameProps) => {
                 setTimeout(() => onEnd({
                     success: win,
                     score: Math.round(avg),
-                    prize: win ? 'SPEEDSTER' : undefined
+                    prize: win ? getRandomPrize() : undefined
                 }), 1000);
             } else {
                 setMessage(`${time}ms`);
