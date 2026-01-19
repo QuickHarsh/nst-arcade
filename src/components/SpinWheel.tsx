@@ -5,13 +5,15 @@ import { useArcadeSound } from '../hooks/useArcadeSound';
 import { useJuice } from '../hooks/useJuice';
 import { triggerConfetti, triggerSchoolPride } from '../utils/confetti';
 
+import { DARES } from '../data/dares';
+
 const PRIZES = [
-    { label: 'MYSTERY BOX', color: '#ff00ff' },
-    { label: '50% OFF', color: '#00ffff' },
-    { label: 'FREE DRINK', color: '#0aff00' },
-    { label: 'JACKPOT', color: '#ffd700' },
-    { label: 'TRY AGAIN', color: '#ff0000' },
-    { label: 'STICKER', color: '#302b63' },
+    { label: 'CHOCOLATE', value: 'CHOCOLATE BAR', color: '#d2691e' },
+    { label: 'DARE 1', type: 'dare', color: '#ff0055' },
+    { label: 'DARE 2', type: 'dare', color: '#9d00ff' },
+    { label: 'JACKPOT', value: 'JACKPOT! MEGA PRIZE', color: '#ffd700' },
+    { label: 'DARE 3', type: 'dare', color: '#00ffff' },
+    { label: 'TRY AGAIN', value: 'TRY AGAIN', color: '#ff0000' },
 ];
 
 export const SpinWheel = ({ onEnd, onExit }: GameProps) => {
@@ -92,7 +94,8 @@ export const SpinWheel = ({ onEnd, onExit }: GameProps) => {
         });
 
         // 3. Handle Result
-        if (prize.label.includes('JACKPOT') || prize.label.includes('MYSTERY')) {
+        // @ts-ignore
+        if (prize.label.includes('JACKPOT') || prize.type === 'dare' || prize.label === 'CHOCOLATE') {
             playSound('win');
             triggerSchoolPride();
             triggerShake(30);
@@ -109,10 +112,19 @@ export const SpinWheel = ({ onEnd, onExit }: GameProps) => {
             if (prize.label === 'TRY AGAIN') {
                 setIsSpinning(false);
             } else {
+                let finalPrize = prize.value || prize.label;
+
+                // If it's a dare or mystery, pick a random dare
+                // @ts-ignore
+                if (prize.type === 'dare') {
+                    const randomDare = DARES[Math.floor(Math.random() * DARES.length)];
+                    finalPrize = `DARE: ${randomDare}`;
+                }
+
                 onEnd({
                     success: true,
                     score: 100,
-                    prize: prize.label
+                    prize: finalPrize
                 });
                 setIsSpinning(false);
             }

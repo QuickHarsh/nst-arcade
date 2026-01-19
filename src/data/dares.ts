@@ -1,0 +1,22 @@
+export const DARES = [
+    "Post a story tagging Tekron saying 'I'm a winner!'",
+    "Ask a stranger to follow Tekron's Instagram.",
+    "Do 10 jumping jacks right now.",
+    "Sing the chorus of your favorite song out loud.",
+    "Take a selfie with a volunteer and tag Tekron.",
+    "Text your crush 'I won at Tekron!'.",
+    "Find someone wearing red and high-five them.",
+    "Do your best robot dance for 10 seconds.",
+    "tell a joke to the person next to you.",
+    "Walk backwards for 10 steps.",
+    "Ask a girl to follow Tekron's Instagram.",
+    "Make a funny face and let someone take a picture.",
+    "Compliment a stranger on their outfit.",
+    "Recite a tongue twister 3 times fast.",
+    "Pretend to be a chicken for 5 seconds.",
+    "Give a round of applause to the organizers.",
+    "Find a hidden QR code (pretend to look).",
+    "Shout 'TEKRON ROCKS!'",
+    "Do a catwalk strut for 5 meters.",
+    "Balance a bottle on your head for 5 seconds."
+];

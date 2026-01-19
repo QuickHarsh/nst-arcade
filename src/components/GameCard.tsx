@@ -33,8 +33,18 @@ export const GameCard = ({ game, onSelect }: GameCardProps) => {
                 className="h-40 w-full flex items-center justify-center relative overflow-hidden"
                 style={{ background: `linear-gradient(45deg, #000000 0%, ${game.thumbnailColor} 100%)` }}
             >
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-                <Play className="w-12 h-12 text-white opacity-50 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+                {game.image ? (
+                    <img
+                        src={game.image}
+                        alt={game.title}
+                        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
+                    />
+                ) : (
+                    <>
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+                        <Play className="w-12 h-12 text-white opacity-50 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+                    </>
+                )}
             </div>
 
             {/* Info Area */}

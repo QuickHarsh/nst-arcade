@@ -16,6 +16,7 @@ export interface IGame {
     title: string;
     description: string;
     goal: string;
+    image?: string;
     thumbnailColor: string; // CSS color string for now, could be image URL later
     component: ComponentType<GameProps>;
 }

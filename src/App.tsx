@@ -6,14 +6,18 @@ import { RedeemScreen } from './components/RedeemScreen';
 
 // Game Imports
 import { SpinWheel } from './components/SpinWheel';
-import { NeonMemory } from './components/games/NeonMemory';
 import { CyberWhack } from './components/games/CyberWhack';
 import { PatternMaster } from './components/games/PatternMaster';
 import { LuckySlots } from './components/games/LuckySlots';
 import { ReactionGrid } from './components/games/ReactionGrid';
-import { SpaceDodge } from './components/games/SpaceDodge';
-import { EmojiRain } from './components/games/EmojiRain';
 import type { IGame, GameResult } from './types';
+
+// Image Imports
+import spinWinImg from './assets/games/spin-win.png';
+import cyberWhackImg from './assets/games/cyber-whack.png';
+import patternMasterImg from './assets/games/pattern-master.png';
+import luckySlotsImg from './assets/games/lucky-slots.png';
+import reactionGridImg from './assets/games/reaction-grid.png';
 
 // Types for our app state
 export type AppPhase = 'attract' | 'lobby' | 'game' | 'result' | 'redeem';
@@ -25,22 +29,16 @@ const GAMES: IGame[] = [
     title: 'Spin & Win',
     description: 'Classic wheel of fortune. Test your luck!',
     goal: 'Spin to win',
+    image: spinWinImg,
     thumbnailColor: '#ff00ff',
     component: SpinWheel,
-  },
-  {
-    id: 'neon-memory',
-    title: 'Neon Memory',
-    description: 'Match the glowing symbols before time runs out.',
-    goal: 'Match all pairs < 60s',
-    thumbnailColor: '#00ffff',
-    component: NeonMemory,
   },
   {
     id: 'cyber-whack',
     title: 'Cyber Whack',
     description: 'Hit the glitching nodes! Fastest reflexes win.',
     goal: 'Score 1000pts',
+    image: cyberWhackImg,
     thumbnailColor: '#0aff00',
     component: CyberWhack,
   },
@@ -49,6 +47,7 @@ const GAMES: IGame[] = [
     title: 'Pattern Master',
     description: 'Memorize the sequence. Repeat the pattern.',
     goal: 'Complete 8 rounds',
+    image: patternMasterImg,
     thumbnailColor: '#ffd700',
     component: PatternMaster,
   },
@@ -57,6 +56,7 @@ const GAMES: IGame[] = [
     title: 'Lucky Slots',
     description: 'Line up the symbols for a jackpot.',
     goal: 'Match 3 symbols',
+    image: luckySlotsImg,
     thumbnailColor: '#302b63',
     component: LuckySlots,
   },
@@ -65,24 +65,9 @@ const GAMES: IGame[] = [
     title: 'Reaction Grid',
     description: 'Test your reaction speed. Click green fast!',
     goal: 'Avg < 350ms',
+    image: reactionGridImg,
     thumbnailColor: '#ff00ff',
     component: ReactionGrid,
-  },
-  {
-    id: 'space-dodge',
-    title: 'Space Dodge',
-    description: 'Survive the asteroid field.',
-    goal: 'Survive 15s',
-    thumbnailColor: '#00ffff',
-    component: SpaceDodge,
-  },
-  {
-    id: 'emoji-rain',
-    title: 'Emoji Rain',
-    description: 'Catch the loot, avoid the bombs.',
-    goal: 'Collect 20 items',
-    thumbnailColor: '#ff0000',
-    component: EmojiRain,
   },
 ];
 
